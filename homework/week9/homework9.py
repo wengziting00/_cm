@@ -4,7 +4,6 @@ p = 0.5
 n = 10000
 
 probability = p**n
-
 print(f"公平銅板連續投擲 {n} 次，全部得到正面的機率 (0.5^{n}):")
 # 使用科學記號顯示以避免顯示為 0.0
 print(f"P = {probability:.4e}")
