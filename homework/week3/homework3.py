@@ -1,6 +1,5 @@
 #1. 定義基本幾何物件
 import math
-
 class Point:
     def __init__(self, x, y):
         self.x = x
