@@ -43,21 +43,21 @@ s_x & 0 \\
 $$
 
 ### 2D 旋轉
-\[
+$$
 \begin{bmatrix}
 \cos\theta & -\sin\theta\\
 \sin\theta & \cos\theta
 \end{bmatrix}
-\]
+$$
 
 ### 2D 平移（需齊次座標）
-\[
+$$
 \begin{bmatrix}
 1 & 0 & t_x\\
 0 & 1 & t_y\\
 0 & 0 & 1
 \end{bmatrix}
-\]
+$$
 
 ---
 
