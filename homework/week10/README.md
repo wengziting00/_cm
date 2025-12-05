@@ -35,12 +35,12 @@ T(au + bv) = aT(u) + bT(v)
 ## 4. 矩陣如何表示 2D / 3D 的平移、縮放、旋轉？
 
 ### 2D 縮放
-\[
+$$
 \begin{bmatrix}
 s_x & 0 \\
 0 & s_y
 \end{bmatrix}
-\]
+$$
 
 ### 2D 旋轉
 \[
