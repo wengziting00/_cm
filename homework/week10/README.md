@@ -175,7 +175,11 @@ A = U \Sigma V^T
 - $\Sigma$：奇異值  
 
 ### 與特徵值關係
-$A^T A = V \Sigma^2 V^T$
+$$
+
+A^T A = V \Sigma^2 V^T
+
+$$
 
 奇異值＝ $(A^T A)$ 的特徵值的平方根。
 
