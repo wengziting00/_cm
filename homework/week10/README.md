@@ -68,23 +68,19 @@ $$
 
 ### 幾何意義
 
-$$
-\det(A) = \text{空間體積伸縮的倍數}
-$$
+$\det(A) = $ 空間體積伸縮的倍數
 
-- \(|\det A| = 1\)：體積不變  
-- \(\det A = 0\)：空間被壓扁（不可逆）
+- $|\det A| = 1$ ：體積不變  
+- $\det A = 0$ ：空間被壓扁（不可逆）
 
 ### Laplace 展開（遞迴公式）
 
-$$
-\det(A)=\sum_{j=1}^n (-1)^{1+j} a_{1j} M_{1j}
-$$
+$\det(A) = \sum_{j=1}^n (-1)^{1+j} a_{1j} M_{1j}$
 
 ### 與體積的關係
-$$
-\text{Volume after} = |\det A| \times \text{Volume before}
-$$
+
+Volume after $= |\det A| \times$ Volume before
+
 
 ---
 
