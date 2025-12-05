@@ -42,7 +42,7 @@ s_x & 0 \\
 \end{bmatrix}
 $$
 
-### 2D 旋轉
+### 2D 旋轉矩陣
 $$
 \begin{bmatrix}
 \cos\theta & -\sin\theta\\
@@ -50,7 +50,7 @@ $$
 \end{bmatrix}
 $$
 
-### 2D 平移（需齊次座標）
+### 2D 平移矩陣（需齊次座標）
 $$
 \begin{bmatrix}
 1 & 0 & t_x\\
