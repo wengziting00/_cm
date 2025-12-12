@@ -40,6 +40,9 @@ def dft(x):
 
     return X
 
+
+2.2. IDFT 函數 (idft)在 IDFT 中，變換矩陣的指數符號相反 (變為正號)，並且結果需要除以信號長度 $N$。
+
 def idft(X):
     N = len(X)
     k = np.arange(N)
@@ -55,3 +58,50 @@ def idft(X):
     x = x_unscaled / N
 
     return x
+
+
+3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
+
+3.1. 驗證函數 (verify_dft_inverse)
+
+def verify_dft_inverse(f):
+    print("\n--- 驗證 DFT/IDFT 可逆性 ---")
+    
+    # 1. DFT
+    F = dft(f)
+    print(f"原始信號長度 N={len(f)}")
+    
+    # 2. IDFT
+    f_recovered = idft(F)
+    f_recovered_real = f_recovered.real # 取實部 (原始信號是實數)
+    
+    # 3. 計算 L2 誤差 (歐幾里得距離)
+    error = np.linalg.norm(f - f_recovered_real)
+    
+    print(f"原始信號 f:\n {f}")
+    print(f"逆變換 f' 的實部:\n {f_recovered_real.round(decimals=10)}")
+    print(f"\n原始信號與逆變換結果的 L2 誤差: {error:.2e}")
+    
+    if error < 1e-9:
+        print("結論: 誤差極小，驗證成功，DFT 和 IDFT 互為逆運算。")
+    else:
+        print("結論: 誤差較大，驗證失敗。")
+
+3.2. 測試案例與執行
+我們創建一個由兩個頻率分量組成的合成信號進行測試。
+
+# 構造測試信號: 包含 5 Hz 和 12 Hz 兩個頻率分量
+N_samples = 64
+t = np.linspace(0, 1, N_samples, endpoint=False)
+f_test = 2 * np.sin(2 * np.pi * 5 * t) + 1.5 * np.cos(2 * np.pi * 12 * t)
+
+# 執行驗證
+verify_dft_inverse(f_test)
+
+3.3. 預期結果由於浮點數計算的極微小誤差，error 應該是一個非常小的數值 (通常在 $10^{-14}$ 範圍內)。
+
+項目,描述
+原始信號 f,包含 64 個採樣點的合成正弦波。
+恢復信號 freal′​,數值上與 f 完全一致 (四捨五入到小數點後 10 位)。
+L2 誤差,數值約為 1.89e-14 (或相似的極小值)。
+結論,誤差極小，驗證成功。
