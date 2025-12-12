@@ -40,8 +40,8 @@ def dft(x):
 
     return X
 
-
-2.2. IDFT 函數 (idft)在 IDFT 中，變換矩陣的指數符號相反 (變為正號)，並且結果需要除以信號長度 $N$。
+#
+## 2.2. IDFT 函數 (idft)在 IDFT 中，變換矩陣的指數符號相反 (變為正號)，並且結果需要除以信號長度 $N$。
 
 def idft(X):
     N = len(X)
