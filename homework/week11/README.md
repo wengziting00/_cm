@@ -2,25 +2,25 @@
 
 這個專案使用 Python 和 NumPy 庫，從頭實現了離散傅立葉變換 (DFT) 及其逆變換 (IDFT)。核心目的是透過矩陣運算來高效計算這兩種變換，並驗證它們互為逆運算 (即 $IDFT(DFT(x)) \approx x$) 的數學性質。
 
-## 1. 數學原理
+1. 數學原理
 
-### A. 離散傅立葉變換 (DFT)
+A. 離散傅立葉變換 (DFT)
 
 DFT 將一個長度為 $N$ 的時域離散信號 $x[n]$ 轉換為頻域信號 $X[k]$。
 
 $$X[k] = \sum_{n=0}^{N-1} x[n] \cdot e^{-i 2 \pi k n / N}$$
 
-### B. 離散傅立葉逆變換 (IDFT)
+B. 離散傅立葉逆變換 (IDFT)
 
 IDFT 將頻域信號 $X[k]$ 逆轉換回原始時域信號 $x[n]$。
 
 $$x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X[k] \cdot e^{+i 2 \pi k n / N}$$
 
-## 2. 程式碼實現 (使用 NumPy 矩陣運算)
+ 2. 程式碼實現 (使用 NumPy 矩陣運算)
 
 本實現避免了多重迴圈，利用 NumPy 的向量化操作和矩陣乘法 (`.dot()`) 來計算變換矩陣 $M$ 與信號向量的乘積。
 
-### 2.1. DFT 函數 (`dft`)
+ 2.1. DFT 函數 (`dft`)
 
 在 DFT 中，我們定義了變換矩陣 $M$ 的元素 $M_{k,n} = e^{-i 2 \pi k n / N}$。
 
@@ -60,7 +60,7 @@ def idft(X):
     return x
 
 
-# 3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
+ 3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
 
 3.1. 驗證函數 (verify_dft_inverse)
 
