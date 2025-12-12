@@ -60,7 +60,7 @@ def idft(X):
     return x
 
 
-3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
+# 3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
 
 3.1. 驗證函數 (verify_dft_inverse)
 
