@@ -38,7 +38,7 @@ def dft(x):
     # 矩陣乘法: X = M * x (N x N 矩陣 . N x 1 向量)
     X = M.dot(x)
 
-    return X
+    return X \
 
 2.2. IDFT 函數 (idft)在 IDFT 中，變換矩陣的指數符號相反 (變為正號)，並且結果需要除以信號長度 $N$。
 
