@@ -1,4 +1,4 @@
-# 1
+#1
 
 import numpy as np
 
@@ -17,7 +17,7 @@ def dft(x):
 x_test = np.array([1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0])
 X_dft = dft(x_test)
 
-# 2
+#2
 def idft(X):
 
     N = len(X)
@@ -34,7 +34,7 @@ def idft(X):
 x_idft = idft(X_dft)
 
 
-# 3
+#3
 def verify_dft_inverse(f):
 
     
