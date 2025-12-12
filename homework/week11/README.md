@@ -58,7 +58,7 @@ def idft(X):
 
     return x
 
-3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
+## 3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
 
 3.1. 驗證函數 (verify_dft_inverse)
 
@@ -89,8 +89,8 @@ def verify_dft_inverse(f):
 我們創建一個由兩個頻率分量組成的合成信號進行測試。
 
 # 構造測試信號: 包含 5 Hz 和 12 Hz 兩個頻率分量
-N_samples = 64
-t = np.linspace(0, 1, N_samples, endpoint=False)
+N_samples = 64\
+t = np.linspace(0, 1, N_samples, endpoint=False)\
 f_test = 2 * np.sin(2 * np.pi * 5 * t) + 1.5 * np.cos(2 * np.pi * 12 * t)
 
 # 執行驗證
