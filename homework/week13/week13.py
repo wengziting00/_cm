@@ -19,7 +19,6 @@ def solve_ode_general(coefficients):
     processed_complex = set()
 
     unique_roots = sorted(root_counts.keys(), key=lambda x: (x.real, x.imag))
-
     for r in unique_roots:
         if r in processed_complex:
             continue
