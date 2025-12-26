@@ -92,7 +92,7 @@ AI資料遺失
 [說明](https://github.com/wengziting00/_cm/tree/main/homework/week3)
 [AI](https://gemini.google.com/app/7fb82a480baf3cb0?hl=zh-TW)
 
-# Geometry Toolkit (Python) - 二維幾何計算工具庫
+## Geometry Toolkit (Python) - 二維幾何計算工具庫
 
 本專案實作了一組**高效且穩定的二維幾何計算工具庫**，涵蓋點、直線、圓等基本幾何物件的表示方式，以及求解常見幾何問題的演算法。
 
@@ -177,4 +177,101 @@ AI資料遺失
 * **運算式：** * **新 x' = x * cos(theta) - y * sin(theta)**
     * **新 y' = x * sin(theta) + y * cos(theta)**
 * **說明：** 這裡 `theta` 為旋轉角度（弧度）。
+
+# 第八週習題：機率統計 - 檢定背後的數學原理
+[AI](https://gemini.google.com/app/05721409f016f69e?hl=zh-TW)
+
+# 第九周習題：資訊理論
+[HW8](https://github.com/wengziting00/_cm/blob/main/homework/week9/homework9.py)
+[說明](https://github.com/wengziting00/_cm/tree/main/homework/week9)
+[AI](https://gemini.google.com/app/32e30bc46b73129c?hl=zh-TW)
+
+## 1. 連續丟 10000 次正面的機率
+從最基本的部分開始：公平銅板正面的機率是 0.5。
+如果要連續 10000 次都正面，機率就是：
+P = 0.5^10000
+算出來是：
+≈ 9.33 × 10^-301
+這比想像中還誇張地小，用科學記號才看得見，不然直接印會變成 0。
+主要結論：即使是 1/2，一連乘 10000 次後就幾乎趨近零。
+
+## 2. 用 log 來計算 0.5^10000
+直接算 p^n 容易 underflow，所以改用 log identity：
+log(p^n) = n * log(p)
+兩種方式：
+先算 0.5^10000 再取 log
+直接算 10000 * log(0.5)
+算出來結果一樣。
+之後再把 log 用 exp() 還原，也能得到跟第 1 題一樣的機率。
+重點就是：用 log 能避免浮點數下限問題，計算更穩定。
+
+## 3. 熵、交叉熵、KL 散度的計算
+使用的分佈：
+P = [0.5, 0.3, 0.2]   # 真實分佈
+Q = [0.4, 0.4, 0.2]   # 模型預測
+
+分別計算：
+H(P)：平均要多少 bit 才能表達 P
+H(P,Q)：如果資料照 P 產生，但你用 Q 去編碼，需要多少 bit
+KL(P‖Q)：量化 P 和 Q 的差距
+結果符合預期：
+KL(P‖Q) = H(P, Q) - H(P)
+
+也就是：
+Q 越接近 P → 交叉熵越小
+Q 越偏離 P → 交叉熵越大
+
+## 4. 驗證交叉熵在 Q = P 時最小
+換一組新的分佈：
+P      = [0.1, 0.4, 0.3, 0.2]
+Q_good = [0.1, 0.4, 0.3, 0.2]  # 完全一樣
+Q_bad  = [0.4, 0.1, 0.3, 0.2]  # 排列錯了
+
+計算：
+H(P, P)      # 完美模型
+H(P, Q_bad)  # 不好的模型
+
+輸出結果滿足：
+H(P, P) ≤ H(P, Q_bad)
+這再次驗證「交叉熵最小值出現在 Q = P」。
+這就是為什麼神經網路訓練會用 cross entropy。
+
+## 5. 7-4 漢明碼：編碼與解碼
+這裡使用：
+G（產生矩陣）做編碼
+H（校驗矩陣）做解碼與錯誤偵測
+✦ 編碼
+給定 4-bit data：
+c = d @ G  (mod 2)
+就會得到 7-bit codeword。
+
+解碼
+收到 r 之後：
+syndrome = r @ H^T (mod 2)
+syndrome = 000 → 沒錯
+syndrome ≠ 000 → 代表錯誤位置（1～7）
+之後把該位 flip 回來即可修正單錯誤。
+
+✦ 測試結果：
+
+無錯誤 → 正確取回原始 4 bits
+在第 5 bit 製造錯誤 → syndrome 指出 5 → 修正後恢復原資料
+符合漢明碼「能偵錯 1、能修正 1」的特性。
+## 6. 夏農信道編碼定理 vs. 夏農–哈特利定理
+
+這部分整理兩個定理的用途差異。
+夏農信道編碼定理（Channel Coding Theorem）
+重點是：
+R < C → 有可能做到可靠傳輸（錯誤率 → 0）
+R > C → 無論如何都不可能可靠傳輸
+這是「到底能不能可靠通訊」的根本界線。
+
+夏農–哈特利定理（Shannon–Hartley Theorem）
+專門算 頻寬受限 + AWGN（高斯白噪聲）信道 的容量：
+C = B * log2(1 + S/N)
+容量由以下決定：
+B（頻寬）SNR（訊噪比）
+這是特定模型的「可達最高傳輸速度」。
+
+
 
