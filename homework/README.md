@@ -273,5 +273,333 @@ C = B * log2(1 + S/N)
 B（頻寬）SNR（訊噪比）
 這是特定模型的「可達最高傳輸速度」。
 
+# 第十周習題：線性代數
+[HW9](https://github.com/wengziting00/_cm/blob/main/homework/week10/homework10.py)
+[說明](https://github.com/wengziting00/_cm/blob/main/homework/week10/README.md)
+[AI](https://gemini.google.com/app/5a46793b4b1d78a6?hl=zh-TW)
+
+## 1. 什麼是「線性」？為何叫「代數」？
+
+### 線性（Linearity）
+一個運算 \(T\) 若滿足  
+\[
+T(au + bv) = aT(u) + bT(v)
+\]  
+則稱線性；它保持比例與可加性。
+
+### 代數（Algebra）
+線性代數研究向量、矩陣、線性變換，以及其運算規則，因此稱為「代數」。
+
+---
+
+## 2. 空間與向量空間
+
+### 數學中的空間（Space）
+空間＝元素集合＋定義其上的結構（如加法、距離、內積）。
+
+### 向量空間（Vector Space）
+能做「向量加法」與「數乘」，並滿足公理，因此被視為一種空間。
+
+---
+
+## 3. 矩陣與向量的關係
+
+- 向量：座標表示。
+- 矩陣：線性變換在特定基底下的座標表示。
+- 矩陣的每欄＝基底向量經線性變換後的位置。
+
+矩陣可表示旋轉、縮放、剪切、反射、投影等線性變換。
+
+---
+
+## 4. 矩陣如何表示 2D / 3D 的平移、縮放、旋轉？
+
+### 2D 縮放
+
+$$
+\begin{bmatrix}
+s_x & 0 \\
+0 & s_y
+\end{bmatrix}
+$$
+
+### 2D 旋轉矩陣
+
+$$
+\begin{bmatrix}
+\cos\theta & -\sin\theta\\
+\sin\theta & \cos\theta
+\end{bmatrix}
+$$
+
+### 2D 平移矩陣（需齊次座標）
+
+$$
+\begin{bmatrix}
+1 & 0 & t_x\\
+0 & 1 & t_y\\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+---
+
+## 5. 行列式的意義、遞迴公式、與體積關係
+
+### 幾何意義
+
+det(A) =  空間體積伸縮的倍數
+
+- $|\det A| = 1$ ：體積不變  
+- $\det A = 0$ ：空間被壓扁（不可逆）
+
+### Laplace 展開（遞迴公式）
+
+$\det(A) = \sum_{j=1}^n (-1)^{1+j} a_{1j} M_{1j}$
+
+### 與體積的關係
+
+Volume after $= |\det A| \times$ Volume before
 
 
+---
+
+## 6. 對角化如何快速計算行列式
+
+若
+
+$$
+A = P D P^{-1}
+$$
+
+則
+
+$$
+\det(A) = \det(D) = \prod_i \lambda_i
+$$
+
+即行列式為所有特徵值的乘積。
+
+---
+
+## 7. LU 分解快速計算行列式
+
+若
+
+$$
+A = LU
+$$
+
+則
+
+$$
+\det(A) = \prod_i u_{ii}
+$$
+
+因為 $L$ 的對角線多為 1。
+
+---
+
+## 8. 特徵值與特徵向量的意義與用途
+
+### 意義
+
+$$
+A v = \lambda v
+$$
+
+特徵向量方向不變，特徵值代表伸縮倍數。
+
+### 用途
+- 對角化  
+- 計算 $A^n$  
+- Markov 鏈  
+- PCA  
+- 模式識別  
+- 微分方程與物理振動
+
+
+---
+
+## 9. QR 分解
+
+$$
+A = QR
+$$
+
+- \(Q\)：正交矩陣  
+- \(R\)：上三角矩陣  
+
+用途：解方程、數值穩定、求特徵值的基礎。
+
+---
+
+## 10. 用 QR 分解求特徵值（QR Algorithm）
+
+重複：
+
+1. $A_k = Q_k R_k$
+2. $A_{k+1} = R_k Q_k$
+
+最終  $A_k$ 會收斂到上三角矩陣，其對角線即特徵值。
+
+---
+
+## 11. SVD 與特徵值分解的關係
+
+### SVD
+$$
+A = U \Sigma V^T
+$$
+
+- \(U, V\)：正交  
+- $\Sigma$：奇異值  
+
+### 與特徵值關係
+
+$$
+A^T A = V \Sigma^2 V^T
+$$
+
+
+
+奇異值＝ $(A^T A)$ 的特徵值的平方根。
+
+---
+
+## 12. PCA 與 SVD 的關係
+
+PCA：找出資料中變異最大的方向（降維）。
+
+資料矩陣 \(X\)：
+
+$X = U \Sigma V^T$
+
+- \(V\)：主成分方向  
+- \(\Sigma\)：變異大小（奇異值）  
+- 選取前 k 個奇異值 → k 維 PCA  
+
+---
+
+# 第11周習題：請寫出傅立葉正轉換和逆轉換的函數（不要用套件）
+
+[習題10](https://github.com/wengziting00/_cm/blob/main/homework/week11/HW10.py)
+[說明](https://github.com/wengziting00/_cm/tree/main/homework/week11)
+[AI](https://gemini.google.com/app/5a46793b4b1d78a6?hl=zh-TW)
+# 離散傅立葉變換 (DFT) 與逆變換 (IDFT) 實現及可逆性驗證
+
+這個專案使用 Python 和 NumPy 庫，從頭實現了離散傅立葉變換 (DFT) 及其逆變換 (IDFT)。核心目的是透過矩陣運算來高效計算這兩種變換，並驗證它們互為逆運算 (即 $IDFT(DFT(x)) \approx x$) 的數學性質。
+
+## 1. 數學原理
+
+### A. 離散傅立葉變換 (DFT)
+
+DFT 將一個長度為 $N$ 的時域離散信號 $x[n]$ 轉換為頻域信號 $X[k]$。
+
+$$X[k] = \sum_{n=0}^{N-1} x[n] \cdot e^{-i 2 \pi k n / N}$$
+
+### B. 離散傅立葉逆變換 (IDFT)
+
+IDFT 將頻域信號 $X[k]$ 逆轉換回原始時域信號 $x[n]$。
+
+$$x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X[k] \cdot e^{+i 2 \pi k n / N}$$
+
+## 2. 程式碼實現 (使用 NumPy 矩陣運算)
+
+本實現避免了多重迴圈，利用 NumPy 的向量化操作和矩陣乘法 (`.dot()`) 來計算變換矩陣 $M$ 與信號向量的乘積。
+
+### 2.1. DFT 函數 (`dft`)
+
+在 DFT 中，我們定義了變換矩陣 $M$ 的元素 $M_{k,n} = e^{-i 2 \pi k n / N}$。
+
+```python
+import numpy as np
+
+def dft(x):
+    N = len(x)
+    n = np.arange(N)
+    k = n.reshape((N, 1)) # 使 k 成為 (N, 1) 的列向量
+
+    # 核心變換矩陣 M: M_kn = exp(-2j * pi * k * n / N)
+    M = np.exp(-2j * np.pi * k * n / N)
+
+    # 矩陣乘法: X = M * x (N x N 矩陣 . N x 1 向量)
+    X = M.dot(x)
+
+    return X
+```
+ 2.2. IDFT 函數 (idft)在 IDFT 中，變換矩陣的指數符號相反 (變為正號)，並且結果需要除以信號長度 $N$。
+
+def idft(X):
+    N = len(X)
+    k = np.arange(N)
+    n = k.reshape((N, 1))
+
+    # 核心變換矩陣 M': M'_nk = exp(+2j * pi * k * n / N)
+    M = np.exp(2j * np.pi * k * n / N)
+
+    # 矩陣乘法: x_unscaled = M' * X
+    x_unscaled = M.dot(X)
+
+    # 縮放因子 (1/N)
+    x = x_unscaled / N
+
+    return x
+
+## 3. 可逆性驗證verify_dft_inverse 函數執行 $DFT \to IDFT$ 的過程，並計算原始信號與恢復信號之間的 L2 誤差。
+
+3.1. 驗證函數 (verify_dft_inverse)
+
+def verify_dft_inverse(f):
+    print("\n--- 驗證 DFT/IDFT 可逆性 ---")
+    
+    # 1. DFT
+    F = dft(f)
+    print(f"原始信號長度 N={len(f)}")
+    
+    # 2. IDFT
+    f_recovered = idft(F)
+    f_recovered_real = f_recovered.real # 取實部 (原始信號是實數)
+    
+    # 3. 計算 L2 誤差 (歐幾里得距離)
+    error = np.linalg.norm(f - f_recovered_real)
+    
+    print(f"原始信號 f:\n {f}")
+    print(f"逆變換 f' 的實部:\n {f_recovered_real.round(decimals=10)}")
+    print(f"\n原始信號與逆變換結果的 L2 誤差: {error:.2e}")
+    
+    if error < 1e-9:
+        print("結論: 誤差極小，驗證成功，DFT 和 IDFT 互為逆運算。")
+    else:
+        print("結論: 誤差較大，驗證失敗。")
+
+3.2. 測試案例與執行
+我們創建一個由兩個頻率分量組成的合成信號進行測試。
+
+# 構造測試信號: 包含 5 Hz 和 12 Hz 兩個頻率分量
+N_samples = 64\
+t = np.linspace(0, 1, N_samples, endpoint=False)\
+f_test = 2 * np.sin(2 * np.pi * 5 * t) + 1.5 * np.cos(2 * np.pi * 12 * t)
+
+# 執行驗證
+verify_dft_inverse(f_test)
+
+3.3. 預期結果由於浮點數計算的極微小誤差，error 應該是一個非常小的數值 (通常在 $10^{-14}$ 範圍內)。
+
+| 項目 | 描述 |
+| :--- | :--- |
+| 原始信號 f | 包含 64 個採樣點的合成正弦波 |
+| 恢復信號 f'real | 數值上與 f 完全一致 (四捨五入到小數點後 10 位) |
+| L2 誤差 | 數值約為 1.89e-14 (或相似的極小值) |
+| 結論 | 誤差極小，驗證成功 |
+
+# 第13周習題：請寫程式求解常係數齊次常微分方程
+[習題11](https://github.com/wengziting00/_cm/blob/main/homework/week13/week13.py)
+[說明](https://github.com/wengziting00/_cm/blob/main/homework/week13/README.md)
+[AI](https://gemini.google.com/app/c5f67c12dd438c99?hl=zh-TW)
+
+根據微分方程理論，這類方程的通解完全由其特徵方程的根所決定，因此程式首先利用 numpy.roots 計算由輸入係數所形成的特徵多項式的所有根。由於數值計算可能產生微小誤差，例如理論上的實根在計算後可能帶有極小的虛部，程式會對根進行修正，將虛部接近零的根視為實根，以確保分類的正確性。
+
+接著，程式利用 Counter 統計各特徵根的重複次數，因為在常係數齊次線性微分方程中，重根的次數會直接影響通解中所需乘上的多項式因子。對於實根，程式依據重根次數產生 𝑒𝜆𝑥,𝑥𝑒𝜆𝑥,𝑥2𝑒𝜆𝑥eλx,xeλx,x2eλx 等解；對於複數共軛根，則依理論轉換為以 𝑒𝛼𝑥cos⁡(𝛽𝑥)αxcos(βx) 與 𝑒𝛼𝑥sin⁡(𝛽𝑥)eαxsin(βx) 為基底的實值解。如果複數根為重根，則同樣乘上對應次數的 𝑥𝑘xk
+
+最後，程式將所有線性獨立解以常數 𝐶𝑖Ci組合成通解，並以字串形式輸出
