@@ -15,7 +15,7 @@ def solve_linear_equations():
         # 使用 numpy 的線性代數求解器
         x = np.linalg.solve(A, b)
         
-        print("求解成功！結果如下：")
+        print("求解成功 結果如下：")
         print(f"x = {x[0]:.2f}")
         print(f"y = {x[1]:.2f}")
         print(f"z = {x[2]:.2f}")
@@ -25,7 +25,7 @@ def solve_linear_equations():
         print(f"\n驗證 (Ax = b): {'通過' if verification else '失敗'}")
         
     except np.linalg.LinAlgError:
-        print("錯誤：矩陣為奇異矩陣 (Singular Matrix)，方程組有無窮多解或無解。")
+        print("錯誤")
 
 if __name__ == "__main__":
     solve_linear_equations()
